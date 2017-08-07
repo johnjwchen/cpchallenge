@@ -48,7 +48,7 @@
 		4E81501F1F37EA0A00327F67 /* Personal CapitalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Personal CapitalUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E8150231F37EA0A00327F67 /* Personal_CapitalUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Personal_CapitalUITests.m; sourceTree = "<group>"; };
 		4E8150251F37EA0A00327F67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4E81502F1F37EAE900327F67 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4E81502F1F37EAE900327F67 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +79,6 @@
 		4E814FF01F37E89B00327F67 = {
 			isa = PBXGroup;
 			children = (
-				4E81502F1F37EAE900327F67 /* Default-568h@2x.png */,
 				4E814FFD1F37EA0A00327F67 /* Personal Capital */,
 				4E8150171F37EA0A00327F67 /* Personal CapitalTests */,
 				4E8150221F37EA0A00327F67 /* Personal CapitalUITests */,
@@ -104,7 +103,6 @@
 				4E8150021F37EA0A00327F67 /* AppDelegate.m */,
 				4E8150041F37EA0A00327F67 /* ViewController.h */,
 				4E8150051F37EA0A00327F67 /* ViewController.m */,
-				4E81500A1F37EA0A00327F67 /* Assets.xcassets */,
 				4E81500F1F37EA0A00327F67 /* Info.plist */,
 				4E814FFE1F37EA0A00327F67 /* Supporting Files */,
 			);
@@ -114,6 +112,8 @@
 		4E814FFE1F37EA0A00327F67 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4E81500A1F37EA0A00327F67 /* Assets.xcassets */,
+				4E81502F1F37EAE900327F67 /* Default-568h@2x.png */,
 				4E814FFF1F37EA0A00327F67 /* main.m */,
 			);
 			name = "Supporting Files";

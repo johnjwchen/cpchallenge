@@ -32,9 +32,11 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // Use recording to get started writing UI tests.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+- (void)testManualWindowCreation {
+    XCTAssertNotNil([[[[XCUIApplication alloc] init] childrenMatchingType:XCUIElementTypeWindow] elementBoundByIndex:0]);
+    
 }
+
 
 @end
