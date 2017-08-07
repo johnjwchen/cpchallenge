@@ -14,6 +14,8 @@
 		4E8150191F37EA0A00327F67 /* Personal_CapitalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150181F37EA0A00327F67 /* Personal_CapitalTests.m */; };
 		4E8150241F37EA0A00327F67 /* Personal_CapitalUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150231F37EA0A00327F67 /* Personal_CapitalUITests.m */; };
 		4E8150301F37EAE900327F67 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E81502F1F37EAE900327F67 /* Default-568h@2x.png */; };
+		4E8150361F37EE6700327F67 /* RSSLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150351F37EE6700327F67 /* RSSLoader.m */; };
+		4E8150381F37F17200327F67 /* RSSLoaderTestes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150371F37F17200327F67 /* RSSLoaderTestes.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,9 @@
 		4E8150231F37EA0A00327F67 /* Personal_CapitalUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Personal_CapitalUITests.m; sourceTree = "<group>"; };
 		4E8150251F37EA0A00327F67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E81502F1F37EAE900327F67 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		4E8150341F37EE6700327F67 /* RSSLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSLoader.h; sourceTree = "<group>"; };
+		4E8150351F37EE6700327F67 /* RSSLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSLoader.m; sourceTree = "<group>"; };
+		4E8150371F37F17200327F67 /* RSSLoaderTestes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSLoaderTestes.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,11 +104,9 @@
 		4E814FFD1F37EA0A00327F67 /* Personal Capital */ = {
 			isa = PBXGroup;
 			children = (
-				4E8150011F37EA0A00327F67 /* AppDelegate.h */,
-				4E8150021F37EA0A00327F67 /* AppDelegate.m */,
-				4E8150041F37EA0A00327F67 /* ViewController.h */,
-				4E8150051F37EA0A00327F67 /* ViewController.m */,
-				4E81500F1F37EA0A00327F67 /* Info.plist */,
+				4E8150321F37ED3400327F67 /* Models */,
+				4E8150311F37ED0E00327F67 /* Controllers */,
+				4E8150331F37ED4400327F67 /* Views */,
 				4E814FFE1F37EA0A00327F67 /* Supporting Files */,
 			);
 			path = "Personal Capital";
@@ -112,6 +115,7 @@
 		4E814FFE1F37EA0A00327F67 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4E81500F1F37EA0A00327F67 /* Info.plist */,
 				4E81500A1F37EA0A00327F67 /* Assets.xcassets */,
 				4E81502F1F37EAE900327F67 /* Default-568h@2x.png */,
 				4E814FFF1F37EA0A00327F67 /* main.m */,
@@ -123,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				4E8150181F37EA0A00327F67 /* Personal_CapitalTests.m */,
+				4E8150371F37F17200327F67 /* RSSLoaderTestes.m */,
 				4E81501A1F37EA0A00327F67 /* Info.plist */,
 			);
 			path = "Personal CapitalTests";
@@ -135,6 +140,33 @@
 				4E8150251F37EA0A00327F67 /* Info.plist */,
 			);
 			path = "Personal CapitalUITests";
+			sourceTree = "<group>";
+		};
+		4E8150311F37ED0E00327F67 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4E8150011F37EA0A00327F67 /* AppDelegate.h */,
+				4E8150021F37EA0A00327F67 /* AppDelegate.m */,
+				4E8150041F37EA0A00327F67 /* ViewController.h */,
+				4E8150051F37EA0A00327F67 /* ViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		4E8150321F37ED3400327F67 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4E8150341F37EE6700327F67 /* RSSLoader.h */,
+				4E8150351F37EE6700327F67 /* RSSLoader.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		4E8150331F37ED4400327F67 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E8150061F37EA0A00327F67 /* ViewController.m in Sources */,
+				4E8150361F37EE6700327F67 /* RSSLoader.m in Sources */,
 				4E8150031F37EA0A00327F67 /* AppDelegate.m in Sources */,
 				4E8150001F37EA0A00327F67 /* main.m in Sources */,
 			);
@@ -282,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E8150191F37EA0A00327F67 /* Personal_CapitalTests.m in Sources */,
+				4E8150381F37F17200327F67 /* RSSLoaderTestes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
