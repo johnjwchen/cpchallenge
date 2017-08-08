@@ -18,6 +18,7 @@
 		4E8150461F38E27B00327F67 /* CPParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150451F38E27B00327F67 /* CPParseOperation.m */; };
 		4E8150491F38E5E500327F67 /* CPArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150481F38E5E500327F67 /* CPArticle.m */; };
 		4E81504B1F38FE8400327F67 /* CPParseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81504A1F38FE8400327F67 /* CPParseTests.m */; };
+		4E8150501F397F2700327F67 /* CPWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81504F1F397F2700327F67 /* CPWebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		4E81504A1F38FE8400327F67 /* CPParseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPParseTests.m; sourceTree = "<group>"; };
 		4E81504C1F390C4200327F67 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		4E81504D1F390CB400327F67 /* Protocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Protocols.h; sourceTree = "<group>"; };
+		4E81504E1F397F2700327F67 /* CPWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPWebViewController.h; sourceTree = "<group>"; };
+		4E81504F1F397F2700327F67 /* CPWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPWebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +160,8 @@
 			children = (
 				4E8150041F37EA0A00327F67 /* CPViewController.h */,
 				4E8150051F37EA0A00327F67 /* CPViewController.m */,
+				4E81504E1F397F2700327F67 /* CPWebViewController.h */,
+				4E81504F1F397F2700327F67 /* CPWebViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 				4E81503B1F38DCD400327F67 /* CPChannelSource.m in Sources */,
 				4E8150061F37EA0A00327F67 /* CPViewController.m in Sources */,
 				4E8150031F37EA0A00327F67 /* AppDelegate.m in Sources */,
+				4E8150501F397F2700327F67 /* CPWebViewController.m in Sources */,
 				4E8150491F38E5E500327F67 /* CPArticle.m in Sources */,
 				4E8150461F38E27B00327F67 /* CPParseOperation.m in Sources */,
 				4E8150001F37EA0A00327F67 /* main.m in Sources */,

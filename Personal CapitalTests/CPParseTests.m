@@ -13,7 +13,8 @@
 
 
 @interface CPParseTests : XCTestCase
-
+@property (nonatomic, strong) XCTestExpectation *sourceExpectation;
+@property (nonatomic, strong) CPChannelSource *source;
 @end
 
 @implementation CPParseTests
@@ -22,7 +23,7 @@
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
     
-    // [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:10000]];
+    //[[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:10000]];
 }
 
 - (void)tearDown {
@@ -37,19 +38,28 @@
     XCTAssertNotNil(op);
 }
 
-- (void)testCPChanelSource {
-    CPChannelSource *source = [[CPChannelSource alloc] initWithFeedURLString:RSSFeedURL];
-    XCTAssertNotNil(source);
-    [source load];
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"articles"] && [object isKindOfClass:[CPChannelSource class]]) {
+        if (_source.articles.count > 10) {
+            [_sourceExpectation fulfill];
+            [_source removeObserver:self forKeyPath:keyPath];
+        }
+    }
 }
 
-
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
+- (void)testCPChanelSource {
+    _source = [[CPChannelSource alloc] initWithFeedURLString:RSSFeedURL];
+    XCTAssertNotNil(_source);
+    
+    [_source addObserver:self forKeyPath:@"articles" options:0 context:nil];
+    _sourceExpectation = [self expectationWithDescription:@"soure have articles."];
+ 
     [self measureBlock:^{
-        // Put the code you want to measure the time of here.
+        [_source load];
+        [self waitForExpectations:@[_sourceExpectation] timeout:12];
     }];
 }
+
+
 
 @end

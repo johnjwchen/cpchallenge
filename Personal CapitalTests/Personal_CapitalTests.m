@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "CPWebViewController.h"
 
 @interface Personal_CapitalTests : XCTestCase
 
@@ -24,11 +25,20 @@
     [super tearDown];
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+
+- (void)testWebPageLoading {
+    CPWebViewController *webViewController = [[CPWebViewController alloc] init];
+    webViewController.urlString = @"https://www.personalcapital.com/blog/market-news/apple-services-generate-impressive-revenue/?displayMobileNavigation=0";
+    [[UIApplication sharedApplication].keyWindow addSubview:webViewController.view];
+    
+    XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@"urlString should be nil when web content loaded."];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)),
+                   dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        if (webViewController.urlString == nil)
+            [expectation fulfill];
+    });
+    [self waitForExpectations:@[expectation] timeout:20];
+    
 }
 
 @end
