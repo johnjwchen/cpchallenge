@@ -6,13 +6,13 @@
 //
 //
 
-#import "ViewController.h"
+#import "CPViewController.h"
 
-@interface ViewController ()
+@interface CPViewController ()
 
 @end
 
-@implementation ViewController
+@implementation CPViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

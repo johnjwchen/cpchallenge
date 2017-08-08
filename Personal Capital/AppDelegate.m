@@ -7,7 +7,7 @@
 //
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "CPViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Create window & the root view controller here, since there's no storyboard supported.
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    ViewController *vc = [[ViewController alloc] init];
+    CPViewController *vc = [[CPViewController alloc] init];
     _window.rootViewController = vc;
     [_window makeKeyAndVisible];
     return YES;
