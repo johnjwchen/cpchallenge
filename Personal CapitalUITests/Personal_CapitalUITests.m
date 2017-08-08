@@ -38,5 +38,19 @@
     
 }
 
+- (void)testDeviceOrentations {
+    [XCUIDevice sharedDevice].orientation = UIDeviceOrientationLandscapeLeft;
+    [[[XCUIApplication alloc] init].tables[@"Empty list"] tap];
+    [XCUIDevice sharedDevice].orientation = UIDeviceOrientationPortraitUpsideDown;
+    [XCUIDevice sharedDevice].orientation = UIDeviceOrientationLandscapeRight;
+    [XCUIDevice sharedDevice].orientation = UIDeviceOrientationLandscapeRight;
+    [XCUIDevice sharedDevice].orientation = UIDeviceOrientationPortrait;
+    [XCUIDevice sharedDevice].orientation = UIDeviceOrientationLandscapeLeft;
+    [XCUIDevice sharedDevice].orientation = UIDeviceOrientationPortraitUpsideDown;
+    
+    
+    
+}
+
 
 @end
