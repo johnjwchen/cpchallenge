@@ -7,7 +7,8 @@
 //
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import "CPViewController.h"
+#import "CPTableViewController.h"
+#import "CPWebViewController.h"
 
 @interface AppDelegate ()
 

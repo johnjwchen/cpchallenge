@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CPWebViewController : UIViewController
+@property (nonatomic, readonly) UIWebView *webView;
 @property (nonatomic, copy) NSString *urlString;
 @end

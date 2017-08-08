@@ -29,6 +29,7 @@
     _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     _indicatorView.hidesWhenStopped = YES;
     [self.view addSubview:_indicatorView];
+    self.title = nil;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -55,6 +56,9 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     _urlString = nil;
     [_indicatorView stopAnimating];
+    if (self.title == nil) {
+        self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    }
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {

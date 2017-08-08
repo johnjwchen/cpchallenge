@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+OBJC_EXTERN NSString * const kArticles;
+OBJC_EXTERN NSString * const kError;
+
 @interface CPChannelSource : NSObject
 
 @property (readonly) NSString *feedURL;

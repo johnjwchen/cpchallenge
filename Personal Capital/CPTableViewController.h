@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPViewController : UITableViewController
+@interface CPTableViewController : UITableViewController
 
 
 @end

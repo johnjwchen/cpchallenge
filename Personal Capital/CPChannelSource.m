@@ -9,6 +9,9 @@
 #import "CPChannelSource.h"
 #import "CPParseOperation.h"
 
+NSString * const kArticles = @"articles";
+NSString * const kError = @"error";
+
 @interface CPChannelSource()<CPParseOperationDelegate>
 @property (nonatomic, copy) NSString *feedURL;
 @property (nonatomic, strong) NSMutableArray *articles;
@@ -79,17 +82,17 @@
 - (void)addArticles:(NSArray *)articles {
     assert([NSThread isMainThread]);
     // use KVO to notify our client of articles change
-    [self willChangeValueForKey:@"articles"];
+    [self willChangeValueForKey:kArticles];
     [_articles addObjectsFromArray:articles];
-    [self didChangeValueForKey:@"articles"];
+    [self didChangeValueForKey:kArticles];
 }
 
 - (void)errorOccur:(NSError *)error {
     assert([NSThread isMainThread]);
     // use KVO to notify our client of this error
-    [self willChangeValueForKey:@"error"];
+    [self willChangeValueForKey:kError];
     _error = error;
-    [self didChangeValueForKey:@"error"];
+    [self didChangeValueForKey:kError];
 }
 
 - (void)parseError:(NSError *)error {
