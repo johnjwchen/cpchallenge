@@ -21,6 +21,7 @@
 		4E8150501F397F2700327F67 /* CPWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81504F1F397F2700327F67 /* CPWebViewController.m */; };
 		4E8150531F3A3A3000327F67 /* CPMainArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150521F3A3A3000327F67 /* CPMainArticleTableViewCell.m */; };
 		4E8150561F3A3D7F00327F67 /* CPArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150551F3A3D7F00327F67 /* CPArticleView.m */; };
+		4E81505E1F3A8B6A00327F67 /* UIImageView+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81505D1F3A8B6A00327F67 /* UIImageView+Network.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		4E8150521F3A3A3000327F67 /* CPMainArticleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMainArticleTableViewCell.m; sourceTree = "<group>"; };
 		4E8150541F3A3D7F00327F67 /* CPArticleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPArticleView.h; sourceTree = "<group>"; };
 		4E8150551F3A3D7F00327F67 /* CPArticleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPArticleView.m; sourceTree = "<group>"; };
+		4E81505C1F3A8B6A00327F67 /* UIImageView+Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Network.h"; sourceTree = "<group>"; };
+		4E81505D1F3A8B6A00327F67 /* UIImageView+Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Network.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +124,7 @@
 		4E814FFD1F37EA0A00327F67 /* Personal Capital */ = {
 			isa = PBXGroup;
 			children = (
+				4E8150571F3A896500327F67 /* Util */,
 				4E8150321F37ED3400327F67 /* Models */,
 				4E8150311F37ED0E00327F67 /* Controllers */,
 				4E8150331F37ED4400327F67 /* Views */,
@@ -181,7 +185,6 @@
 				4E8150451F38E27B00327F67 /* CPParseOperation.m */,
 				4E8150471F38E5E500327F67 /* CPArticle.h */,
 				4E8150481F38E5E500327F67 /* CPArticle.m */,
-				4E81504C1F390C4200327F67 /* Constants.h */,
 				4E81504D1F390CB400327F67 /* Protocols.h */,
 			);
 			name = Models;
@@ -191,11 +194,21 @@
 			isa = PBXGroup;
 			children = (
 				4E8150511F3A3A3000327F67 /* CPMainArticleTableViewCell.h */,
+				4E8150521F3A3A3000327F67 /* CPMainArticleTableViewCell.m */,
 				4E8150541F3A3D7F00327F67 /* CPArticleView.h */,
 				4E8150551F3A3D7F00327F67 /* CPArticleView.m */,
-				4E8150521F3A3A3000327F67 /* CPMainArticleTableViewCell.m */,
+				4E81505C1F3A8B6A00327F67 /* UIImageView+Network.h */,
+				4E81505D1F3A8B6A00327F67 /* UIImageView+Network.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		4E8150571F3A896500327F67 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				4E81504C1F390C4200327F67 /* Constants.h */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,6 +353,7 @@
 				4E8150461F38E27B00327F67 /* CPParseOperation.m in Sources */,
 				4E8150531F3A3A3000327F67 /* CPMainArticleTableViewCell.m in Sources */,
 				4E8150561F3A3D7F00327F67 /* CPArticleView.m in Sources */,
+				4E81505E1F3A8B6A00327F67 /* UIImageView+Network.m in Sources */,
 				4E8150001F37EA0A00327F67 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

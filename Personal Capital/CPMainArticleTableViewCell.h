@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Protocols.h"
 
 @interface CPMainArticleTableViewCell : UITableViewCell
 
-@property (nonatomic, readonly) UIImageView
+- (void)setArticle:(id<ArticleItem>)article;
 
 @end
