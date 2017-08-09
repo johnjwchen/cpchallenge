@@ -18,4 +18,5 @@
 
 - (instancetype)initShowDetail:(BOOL)showDetail;
 
++ (CGFloat)leftSpaceOfTitle;
 @end

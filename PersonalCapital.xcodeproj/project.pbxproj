@@ -22,6 +22,7 @@
 		4E8150531F3A3A3000327F67 /* CPMainArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150521F3A3A3000327F67 /* CPMainArticleTableViewCell.m */; };
 		4E8150561F3A3D7F00327F67 /* CPArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150551F3A3D7F00327F67 /* CPArticleView.m */; };
 		4E81505E1F3A8B6A00327F67 /* UIImageView+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81505D1F3A8B6A00327F67 /* UIImageView+Network.m */; };
+		4E8150611F3A939B00327F67 /* CPPreviousArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150601F3A939B00327F67 /* CPPreviousArticleTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		4E8150551F3A3D7F00327F67 /* CPArticleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPArticleView.m; sourceTree = "<group>"; };
 		4E81505C1F3A8B6A00327F67 /* UIImageView+Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Network.h"; sourceTree = "<group>"; };
 		4E81505D1F3A8B6A00327F67 /* UIImageView+Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Network.m"; sourceTree = "<group>"; };
+		4E81505F1F3A939B00327F67 /* CPPreviousArticleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPreviousArticleTableViewCell.h; sourceTree = "<group>"; };
+		4E8150601F3A939B00327F67 /* CPPreviousArticleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPreviousArticleTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +198,8 @@
 			children = (
 				4E8150511F3A3A3000327F67 /* CPMainArticleTableViewCell.h */,
 				4E8150521F3A3A3000327F67 /* CPMainArticleTableViewCell.m */,
+				4E81505F1F3A939B00327F67 /* CPPreviousArticleTableViewCell.h */,
+				4E8150601F3A939B00327F67 /* CPPreviousArticleTableViewCell.m */,
 				4E8150541F3A3D7F00327F67 /* CPArticleView.h */,
 				4E8150551F3A3D7F00327F67 /* CPArticleView.m */,
 				4E81505C1F3A8B6A00327F67 /* UIImageView+Network.h */,
@@ -347,6 +352,7 @@
 			files = (
 				4E81503B1F38DCD400327F67 /* CPChannelSource.m in Sources */,
 				4E8150061F37EA0A00327F67 /* CPTableViewController.m in Sources */,
+				4E8150611F3A939B00327F67 /* CPPreviousArticleTableViewCell.m in Sources */,
 				4E8150031F37EA0A00327F67 /* AppDelegate.m in Sources */,
 				4E8150501F397F2700327F67 /* CPWebViewController.m in Sources */,
 				4E8150491F38E5E500327F67 /* CPArticle.m in Sources */,

@@ -18,19 +18,6 @@
 
 @implementation CPMainArticleTableViewCell
 
-- (NSString *)convertDateString:(NSString *)dateString {
-    static NSDateFormatter *dateFormatterToString;
-    static NSDateFormatter *dateFormatterFromString;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        dateFormatterToString = [[NSDateFormatter alloc] init];
-        [dateFormatterToString setDateFormat:@"MMM dd, yyyy"];
-        dateFormatterFromString = [[NSDateFormatter alloc] init];
-        [dateFormatterFromString setDateFormat:@"E, d MMM yyyy HH:mm:ss Z"];
-    });
-    
-    return [dateFormatterToString stringFromDate: [dateFormatterFromString dateFromString:dateString]];
-}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -51,11 +38,26 @@
 }
 
 - (void)setArticle:(id<ArticleItem>)article {
-    [_articleView.imageView setImageOfURLString:article.link];
+    [_articleView.imageView setImageOfURLString:article.imageURL];
     [_articleView.titleLabel setText:article.htmlTitle];
     NSString *detail = [NSString stringWithFormat:@"%@ --- %@", [self convertDateString:article.pubDate], article.htmlDescription];
     [_articleView.detailLabel setText:detail];
     [_articleView setNeedsDisplay];
+}
+
+
+- (NSString *)convertDateString:(NSString *)dateString {
+    static NSDateFormatter *dateFormatterToString;
+    static NSDateFormatter *dateFormatterFromString;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dateFormatterToString = [[NSDateFormatter alloc] init];
+        [dateFormatterToString setDateFormat:@"MMM dd, yyyy"];
+        dateFormatterFromString = [[NSDateFormatter alloc] init];
+        [dateFormatterFromString setDateFormat:@"E, d MMM yyyy HH:mm:ss Z"];
+    });
+    
+    return [dateFormatterToString stringFromDate: [dateFormatterFromString dateFromString:dateString]];
 }
 
 @end

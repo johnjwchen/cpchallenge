@@ -51,7 +51,11 @@
     }
     return self;
 }
-static CGFloat leftSpace = 20;
+
+
++ (CGFloat)leftSpaceOfTitle {
+    return 20;
+}
 static CGFloat heightForDetailLabelOfOneLine = 25;
 - (void)setContraints {
     [[_imageView.topAnchor constraintEqualToAnchor:self.topAnchor constant:self.borderWidth] setActive:YES];
@@ -59,7 +63,7 @@ static CGFloat heightForDetailLabelOfOneLine = 25;
     [[_imageView.rightAnchor constraintEqualToAnchor:self.rightAnchor constant:self.borderWidth] setActive:YES];
     [[_imageView.bottomAnchor constraintEqualToAnchor:_titleLabel.topAnchor constant:1] setActive:YES];
     
-    [[_titleLabel.leftAnchor constraintEqualToAnchor:self.leftAnchor constant: leftSpace] setActive:YES];
+    [[_titleLabel.leftAnchor constraintEqualToAnchor:self.leftAnchor constant: [CPArticleView leftSpaceOfTitle]] setActive:YES];
     [[_titleLabel.rightAnchor constraintEqualToAnchor:self.rightAnchor constant:self.borderWidth] setActive:YES];
     [[_titleLabel.heightAnchor constraintEqualToConstant:44] setActive:YES];
     if (_detailLabel == nil) {
@@ -67,7 +71,7 @@ static CGFloat heightForDetailLabelOfOneLine = 25;
     }
     else {
         [[_titleLabel.bottomAnchor constraintEqualToAnchor:_detailLabel.topAnchor constant:1] setActive:YES];
-        [[_detailLabel.leftAnchor constraintEqualToAnchor:self.leftAnchor constant:leftSpace] setActive:YES];
+        [[_detailLabel.leftAnchor constraintEqualToAnchor:self.leftAnchor constant:[CPArticleView leftSpaceOfTitle]] setActive:YES];
         [[_detailLabel.rightAnchor constraintEqualToAnchor:self.rightAnchor constant:self.borderWidth] setActive:YES];
         [_detailLabel.heightAnchor constraintEqualToConstant: heightForDetailLabelOfOneLine * _detailLabel.numberOfLines];
     }
