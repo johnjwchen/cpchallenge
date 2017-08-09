@@ -39,13 +39,16 @@
 }
 
 - (void)commonInit {
+    self.translatesAutoresizingMaskIntoConstraints = NO;
     _label = [[UILabel alloc] init];
+    _label.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:_label];
     UILayoutGuide *margin = self.layoutMarginsGuide;
     [_label.topAnchor constraintEqualToAnchor:margin.topAnchor];
     [_label.leftAnchor constraintEqualToAnchor:margin.leftAnchor constant:[CPArticleView leftSpaceOfTitle]];
     [_label.rightAnchor constraintEqualToAnchor:margin.rightAnchor];
     [_label.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor];
+    [self setNeedsUpdateConstraints];
 }
 
 @end

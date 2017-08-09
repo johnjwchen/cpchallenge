@@ -22,25 +22,34 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.translatesAutoresizingMaskIntoConstraints = NO;
         self.backgroundColor = [UIColor whiteColor];
+        
         _articleView = [[CPArticleView alloc] initShowDetail:YES];
         _articleView.backgroundColor = self.backgroundColor;
+        _articleView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.contentView addSubview:_articleView];
+        
         [self setUpContraints];
     }
     return self;
 }
 
 - (void)setUpContraints {
-    [_articleView.topAnchor constraintEqualToAnchor:self.topAnchor];
-    [_articleView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor];
-    [_articleView.leftAnchor constraintEqualToAnchor:self.leftAnchor];
-    [_articleView.rightAnchor constraintEqualToAnchor:self.rightAnchor];
+    UILayoutGuide *margin = self.contentView.layoutMarginsGuide;
+    [[_articleView.topAnchor constraintEqualToAnchor:margin.topAnchor] setActive:YES];
+    [[_articleView.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor] setActive:YES];
+    [[_articleView.leftAnchor constraintEqualToAnchor:margin.leftAnchor] setActive:YES];
+    [[_articleView.rightAnchor constraintEqualToAnchor:margin.rightAnchor] setActive:YES];
+    [self setNeedsUpdateConstraints];
 }
 
 - (void)setArticle:(id<ArticleItem>)article {
     [_articleView.imageView setImageOfURLString:article.imageURL];
     [_articleView.titleLabel setText:article.htmlTitle];
-    NSString *detail = [NSString stringWithFormat:@"%@ --- %@", [self convertDateString:article.pubDate], article.htmlDescription];
+    NSString *detail = nil;
+    if (article)
+        detail = [NSString stringWithFormat:@"%@ --- %@", [self convertDateString:article.pubDate], article.htmlDescription];
     [_articleView.detailLabel setText:detail];
     [_articleView setNeedsDisplay];
 }
@@ -51,13 +60,18 @@
     static NSDateFormatter *dateFormatterFromString;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+         NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
         dateFormatterToString = [[NSDateFormatter alloc] init];
-        [dateFormatterToString setDateFormat:@"MMM dd, yyyy"];
+        [dateFormatterToString setDateFormat:@"MMMM d, yyyy"];
+        [dateFormatterToString setLocale:enUSPOSIXLocale];
         dateFormatterFromString = [[NSDateFormatter alloc] init];
-        [dateFormatterFromString setDateFormat:@"E, d MMM yyyy HH:mm:ss Z"];
+        [dateFormatterFromString setLocale:enUSPOSIXLocale];
+        // Tue, 08 Aug 2017 20:36:02 +0000
+        [dateFormatterFromString setDateFormat:@"E, dd MMM yyyy HH:mm:ss Z"];
     });
     
-    return [dateFormatterToString stringFromDate: [dateFormatterFromString dateFromString:dateString]];
+    NSDate *date = [dateFormatterFromString dateFromString:dateString];
+    return [dateFormatterToString stringFromDate: date];
 }
 
 @end

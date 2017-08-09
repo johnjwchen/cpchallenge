@@ -33,11 +33,20 @@ static CGFloat ratioOfArticleCellHeightWidth = 0.7;
     [_source addObserver:self forKeyPath:@"articles" options:0 context:nil];
     [_source addObserver:self forKeyPath:@"error" options:NSKeyValueObservingOptionNew context:nil];
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    
     [self.tableView registerClass:[CPMainArticleTableViewCell class] forCellReuseIdentifier:kCPMainArticleTableViewCell];
     [self.tableView registerClass:[CPPreviousArticleTableViewCell class] forCellReuseIdentifier:kCPPreviousArticleTableViewCell];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 200;
+    self.tableView.delegate = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.tableView.delegate == nil) {
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+        [_source load];
+    }
 }
 
 #pragma mark - Tableview Datasource
@@ -51,39 +60,43 @@ static CGFloat ratioOfArticleCellHeightWidth = 0.7;
     else return _source.articles.count / 2;
 }
 
-- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 1) return @"Previous Articles";
-    else return nil;
-}
-
-// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         CPMainArticleTableViewCell *mainArticleCell = (CPMainArticleTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCPMainArticleTableViewCell];
         [mainArticleCell setArticle:_source.articles.firstObject];
+        [mainArticleCell setNeedsUpdateConstraints];
+        [mainArticleCell setNeedsLayout];
         return mainArticleCell;
     }
     else {
         CPPreviousArticleTableViewCell *previewArticleCell = (CPPreviousArticleTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCPPreviousArticleTableViewCell];
         id<ArticleItem> leftArticle = _source.articles[2*(indexPath.row+1)-1];
-        id<ArticleItem> rightArticle = _source.articles[2*(indexPath.row+1)];
+        id<ArticleItem> rightArticle = 2*(indexPath.row+1) < _source.articles.count ? _source.articles[2*(indexPath.row+1)] : nil;
         [previewArticleCell setLeftArticle:leftArticle rightArticle:rightArticle];
+        [previewArticleCell setNeedsUpdateConstraints];
+        [previewArticleCell setNeedsLayout];
         return previewArticleCell;
     }
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 0) return nil;
+    
     CPPreviousArticleHeaderView *headerView = [[CPPreviousArticleHeaderView alloc] init];
     headerView.label.text = @"Previous Articles";
     return headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 30;
+    return section == 1 ? 30 : 0;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0)
+        return self.tableView.frame.size.width * ratioOfArticleCellHeightWidth;
+    else
+        return self.tableView.frame.size.width * ratioOfArticleCellHeightWidth/2;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0)
         return self.tableView.frame.size.width * ratioOfArticleCellHeightWidth;
