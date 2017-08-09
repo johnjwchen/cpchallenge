@@ -44,6 +44,9 @@ NSString * const kError = @"error";
 
 - (void)load
 {
+    [_articles removeAllObjects];
+    [self didChangeValueForKey:kArticles];
+    
     _sessionTask = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:_feedURL] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error != nil && response == nil) {
             if (error.code == NSURLErrorAppTransportSecurityRequiresSecureConnection) {

@@ -21,7 +21,8 @@
     // Create window & the root view controller here, since there's no storyboard supported.
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     CPTableViewController *vc = [[CPTableViewController alloc] init];
-    _window.rootViewController = vc;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    _window.rootViewController = nav;
     [_window makeKeyAndVisible];
     return YES;
 }

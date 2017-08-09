@@ -17,8 +17,8 @@
 
 @implementation CPPreviousArticleHeaderView
 
-- (instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier {
-    self = [super initWithReuseIdentifier:reuseIdentifier];
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.contentView.backgroundColor = [UIColor whiteColor];
         self.contentView.translatesAutoresizingMaskIntoConstraints = NO;

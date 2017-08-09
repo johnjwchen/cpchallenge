@@ -19,4 +19,6 @@
 - (instancetype)initShowDetail:(BOOL)showDetail;
 
 + (CGFloat)leftSpaceOfTitle;
++ (CGFloat)heightFromWidth:(CGFloat)width hasDetail:(BOOL)hasDetail;
+
 @end

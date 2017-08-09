@@ -21,7 +21,7 @@ static NSString * const kCPMainArticleTableViewCell = @"CPMainArticleTableViewCe
 static NSString * const kCPPreviousArticleTableViewCell = @"CPPreviousArticleTableViewCell";
 static NSString * const kCPPreviousArticleHeaderView = @"CPPreviousArticleHeaderView";
 
-static CGFloat ratioOfArticleCellHeightWidth = 0.7;
+//static CGFloat ratioOfArticleCellHeightWidth = 0.7;
 
 @implementation CPTableViewController
 
@@ -30,19 +30,26 @@ static CGFloat ratioOfArticleCellHeightWidth = 0.7;
 }
 
 - (void)viewDidLoad {
+    self.title = @"Investing – Daily Capital";
     _source = [[CPChannelSource alloc] initWithFeedURLString:RSSFeedURL];
     [_source addObserver:self forKeyPath:@"articles" options:0 context:nil];
     [_source addObserver:self forKeyPath:@"error" options:NSKeyValueObservingOptionNew context:nil];
     
     [self.tableView registerClass:[CPMainArticleTableViewCell class] forCellReuseIdentifier:kCPMainArticleTableViewCell];
     [self.tableView registerClass:[CPPreviousArticleTableViewCell class] forCellReuseIdentifier:kCPPreviousArticleTableViewCell];
-    [self.tableView registerClass:[CPPreviousArticleHeaderView class] forHeaderFooterViewReuseIdentifier:kCPPreviousArticleHeaderView];
+    [self.tableView registerClass:[CPPreviousArticleHeaderView class] forCellReuseIdentifier:kCPPreviousArticleHeaderView];
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 200;
+    self.tableView.estimatedRowHeight = 100;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection = NO;
     self.tableView.delegate = nil;
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadSource)];
+}
+- (void)reloadSource {
+    [_source load];
+    [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -61,52 +68,43 @@ static CGFloat ratioOfArticleCellHeightWidth = 0.7;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) return 1;
+    if (section == 0) return 2;
     else return _source.articles.count / 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
         CPMainArticleTableViewCell *mainArticleCell = (CPMainArticleTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCPMainArticleTableViewCell];
         [mainArticleCell setArticle:_source.articles.firstObject];
-        [mainArticleCell setNeedsUpdateConstraints];
         [mainArticleCell setNeedsLayout];
+        [mainArticleCell layoutIfNeeded];
         return mainArticleCell;
+        }
+        else {
+            CPPreviousArticleHeaderView *headerViewCell = (CPPreviousArticleHeaderView*)[tableView dequeueReusableCellWithIdentifier:kCPPreviousArticleHeaderView];
+            headerViewCell.label.text = @"Previous Articles";
+            return headerViewCell;
+        }
     }
     else {
         CPPreviousArticleTableViewCell *previewArticleCell = (CPPreviousArticleTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCPPreviousArticleTableViewCell];
         id<ArticleItem> leftArticle = _source.articles[2*(indexPath.row+1)-1];
         id<ArticleItem> rightArticle = 2*(indexPath.row+1) < _source.articles.count ? _source.articles[2*(indexPath.row+1)] : nil;
         [previewArticleCell setLeftArticle:leftArticle rightArticle:rightArticle];
-        [previewArticleCell setNeedsUpdateConstraints];
-        [previewArticleCell setNeedsLayout];
+        [previewArticleCell.contentView setNeedsLayout];
+        [previewArticleCell.contentView layoutIfNeeded];
         return previewArticleCell;
     }
 }
 
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (section == 0) return nil;
-    
-    CPPreviousArticleHeaderView *headerView = (CPPreviousArticleHeaderView *)[tableView dequeueReusableHeaderFooterViewWithIdentifier:kCPPreviousArticleHeaderView];
-    headerView.label.text = @"Previous Articles";
-    return headerView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return section == 1 ? 30 : 0;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0)
-        return self.tableView.frame.size.width * ratioOfArticleCellHeightWidth;
-    else
-        return self.tableView.frame.size.width * ratioOfArticleCellHeightWidth/2;
-}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0)
-        return self.tableView.frame.size.width * ratioOfArticleCellHeightWidth;
-    else
-        return self.tableView.frame.size.width * ratioOfArticleCellHeightWidth/2;
+    if (indexPath.section == 0) {
+        return indexPath.row == 0? [CPMainArticleTableViewCell rowHeight] : 36;
+    }
+    else {
+        return [CPPreviousArticleTableViewCell rowHeight];
+    }
 }
 
 #pragma mark - Tableview Delegate

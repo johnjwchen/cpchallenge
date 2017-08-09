@@ -13,4 +13,6 @@
 
 - (void)setArticle:(id<ArticleItem>)article;
 
++ (CGFloat)rowHeight;
+
 @end

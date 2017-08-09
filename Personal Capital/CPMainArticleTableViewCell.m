@@ -18,11 +18,13 @@
 
 @implementation CPMainArticleTableViewCell
 
++ (CGFloat)rowHeight {
+    return [CPArticleView heightFromWidth:[UIScreen mainScreen].bounds.size.width hasDetail:YES];
+}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.translatesAutoresizingMaskIntoConstraints = NO;
         self.backgroundColor = [UIColor whiteColor];
         
         _articleView = [[CPArticleView alloc] initShowDetail:YES];
@@ -41,7 +43,6 @@
     [[_articleView.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor] setActive:YES];
     [[_articleView.leftAnchor constraintEqualToAnchor:margin.leftAnchor] setActive:YES];
     [[_articleView.rightAnchor constraintEqualToAnchor:margin.rightAnchor] setActive:YES];
-    [self setNeedsUpdateConstraints];
 }
 
 - (void)setArticle:(id<ArticleItem>)article {
@@ -78,5 +79,6 @@
     NSDate *date = [dateFormatterFromString dateFromString:dateString];
     return [dateFormatterToString stringFromDate: date];
 }
+
 
 @end

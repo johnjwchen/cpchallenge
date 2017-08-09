@@ -17,6 +17,10 @@
 
 @implementation CPPreviousArticleTableViewCell
 
++ (CGFloat)rowHeight {
+    return [CPArticleView heightFromWidth:[UIScreen mainScreen].bounds.size.width/2 hasDetail:NO];
+}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -56,14 +60,13 @@
 - (void)setLeftArticle:(id<ArticleItem>)leftArticle rightArticle:(id<ArticleItem>)rightArticle {
     [_leftArticleView.imageView setImageOfURLString: leftArticle.imageURL];
     [_leftArticleView.titleLabel setText:leftArticle.htmlTitle];
-    [_leftArticleView setNeedsLayout];
-    [_leftArticleView setNeedsDisplay];
     
     [_rightArticleView setHidden:(rightArticle == nil)];
     [_rightArticleView.imageView setImageOfURLString:rightArticle.imageURL];
     [_rightArticleView.titleLabel setText:rightArticle.htmlTitle];
-    [_rightArticleView setNeedsLayout];
-    [_rightArticleView setNeedsDisplay];
+    
+    [self setNeedsLayout];
 }
+
 
 @end

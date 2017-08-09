@@ -13,4 +13,5 @@
 
 - (void)setLeftArticle:(id<ArticleItem>)leftArticle rightArticle:(id<ArticleItem>)rightArticle;
 
++ (CGFloat)rowHeight;
 @end
