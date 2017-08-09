@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface CPArticleView : UIView
+@interface CPArticleView : UIControl
 @property (nonatomic, readwrite) CGColorRef borderColor;
 @property (nonatomic, readwrite) CGFloat borderWidth;
 @property (nonatomic, readonly) UIImageView * imageView;

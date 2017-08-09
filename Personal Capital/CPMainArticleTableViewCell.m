@@ -45,13 +45,18 @@
 }
 
 - (void)setArticle:(id<ArticleItem>)article {
+    if (article == nil) return;
     [_articleView.imageView setImageOfURLString:article.imageURL];
     [_articleView.titleLabel setText:article.htmlTitle];
-    NSString *detail = nil;
-    if (article)
-        detail = [NSString stringWithFormat:@"%@ --- %@", [self convertDateString:article.pubDate], article.htmlDescription];
-    [_articleView.detailLabel setText:detail];
+    NSString *detail = [NSString stringWithFormat:@"%@ — %@", [self convertDateString:article.pubDate], article.htmlDescription];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:detail];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = 6;
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, detail.length)];
+    _articleView.detailLabel.attributedText = attributedString;
+    
     [_articleView setNeedsDisplay];
+    [_articleView setNeedsLayout];
 }
 
 

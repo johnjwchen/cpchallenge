@@ -31,7 +31,6 @@
         [[_label.leftAnchor constraintEqualToAnchor:margin.leftAnchor constant:[CPArticleView leftSpaceOfTitle]] setActive:YES];
         [[_label.rightAnchor constraintEqualToAnchor:margin.rightAnchor] setActive:YES];
         [[_label.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor] setActive:YES];
-        [self setNeedsUpdateConstraints];
     }
     return self;
 }

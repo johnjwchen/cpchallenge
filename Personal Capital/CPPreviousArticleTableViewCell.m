@@ -51,15 +51,19 @@
     [[_rightArticleView.topAnchor constraintEqualToAnchor:margin.topAnchor] setActive:YES];
     [[_rightArticleView.rightAnchor constraintEqualToAnchor:margin.rightAnchor constant:-[CPArticleView leftSpaceOfTitle]] setActive:YES];
     [[_rightArticleView.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor] setActive:YES];
-    
-    [self setNeedsLayout];
 }
 
 - (void)setLeftArticle:(id<ArticleItem>)leftArticle rightArticle:(id<ArticleItem>)rightArticle {
     [_leftArticleView.imageView setImageOfURLString: leftArticle.imageURL];
     [_leftArticleView.titleLabel setText:leftArticle.htmlTitle];
+    [_leftArticleView setNeedsLayout];
+    [_leftArticleView setNeedsDisplay];
+    
+    [_rightArticleView setHidden:(rightArticle == nil)];
     [_rightArticleView.imageView setImageOfURLString:rightArticle.imageURL];
     [_rightArticleView.titleLabel setText:rightArticle.htmlTitle];
+    [_rightArticleView setNeedsLayout];
+    [_rightArticleView setNeedsDisplay];
 }
 
 @end
