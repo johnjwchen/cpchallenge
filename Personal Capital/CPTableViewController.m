@@ -9,10 +9,18 @@
 #import "CPTableViewController.h"
 #import "Constants.h"
 #import "CPChannelSource.h"
+#import "CPMainArticleTableViewCell.h"
+#import "CPPreviousArticleTableViewCell.h"
+#import "CPPreviousArticleHeaderView.h"
 
 @interface CPTableViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) CPChannelSource *source;
 @end
+
+static NSString * const kCPMainArticleTableViewCell = @"CPMainArticleTableViewCell";
+static NSString * const kCPPreviousArticleTableViewCell = @"CPPreviousArticleTableViewCell";
+
+static CGFloat ratioOfArticleCellHeightWidth = 0.7;
 
 @implementation CPTableViewController
 
@@ -27,6 +35,9 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    [self.tableView registerClass:[CPMainArticleTableViewCell class] forCellReuseIdentifier:kCPMainArticleTableViewCell];
+    [self.tableView registerClass:[CPPreviousArticleTableViewCell class] forCellReuseIdentifier:kCPPreviousArticleTableViewCell];
 }
 
 #pragma mark - Tableview Datasource
@@ -49,7 +60,35 @@
 // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (indexPath.section == 0) {
+        CPMainArticleTableViewCell *mainArticleCell = (CPMainArticleTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCPMainArticleTableViewCell];
+        [mainArticleCell setArticle:_source.articles.firstObject];
+        return mainArticleCell;
+    }
+    else {
+        CPPreviousArticleTableViewCell *previewArticleCell = (CPPreviousArticleTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCPPreviousArticleTableViewCell];
+        id<ArticleItem> leftArticle = _source.articles[2*(indexPath.row+1)-1];
+        id<ArticleItem> rightArticle = _source.articles[2*(indexPath.row+1)];
+        [previewArticleCell setLeftArticle:leftArticle rightArticle:rightArticle];
+        return previewArticleCell;
+    }
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    CPPreviousArticleHeaderView *headerView = [[CPPreviousArticleHeaderView alloc] init];
+    headerView.label.text = @"Previous Articles";
+    return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 30;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0)
+        return self.tableView.frame.size.width * ratioOfArticleCellHeightWidth;
+    else
+        return self.tableView.frame.size.width * ratioOfArticleCellHeightWidth/2;
 }
 
 #pragma mark - Tableview Delegate

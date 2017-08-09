@@ -20,7 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Create window & the root view controller here, since there's no storyboard supported.
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    CPViewController *vc = [[CPViewController alloc] init];
+    CPTableViewController *vc = [[CPTableViewController alloc] init];
     _window.rootViewController = vc;
     [_window makeKeyAndVisible];
     return YES;

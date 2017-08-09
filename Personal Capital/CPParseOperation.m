@@ -157,7 +157,13 @@ static NSString * const kLinkName = @"link";
 
 - (void)parser:(NSXMLParser *)parser foundCDATA:(NSData *)CDATABlock {
     if ([_elementStack.lastObject isEqualToString:kDescriptionName]) {
-        _currentArticle.htmlDescription = [[NSString alloc] initWithData:CDATABlock encoding:NSUTF8StringEncoding];
+        NSString *htmlDescription = [[NSString alloc] initWithData:CDATABlock encoding:NSUTF8StringEncoding];
+        static NSRegularExpression *regExpression;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            regExpression = [[NSRegularExpression alloc] initWithPattern:@"<.?p>" options:NSRegularExpressionCaseInsensitive error:nil];
+        });
+        _currentArticle.htmlDescription = [regExpression stringByReplacingMatchesInString:htmlDescription options:0 range:NSMakeRange(0, [htmlDescription length]) withTemplate:@""];
     }
 }
 

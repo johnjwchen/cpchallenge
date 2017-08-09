@@ -23,8 +23,10 @@
         self.backgroundColor = [UIColor whiteColor];
         _leftArticleView = [[CPArticleView alloc] initShowDetail:NO];
         _leftArticleView.backgroundColor = self.backgroundColor;
+        [self addSubview:_leftArticleView];
         _rightArticleView = [[CPArticleView alloc] initShowDetail:NO];
         _rightArticleView.backgroundColor = self.backgroundColor;
+        [self addSubview:_rightArticleView];
         
         [self setUpContraints];
     }
@@ -32,9 +34,18 @@
 }
 
 - (void)setUpContraints {
-    [_leftArticleView.topAnchor constraintEqualToAnchor:self.topAnchor];
-    [_leftArticleView.leftAnchor constraintEqualToAnchor:self.leftAnchor constant:[CPArticleView leftSpaceOfTitle]];
+    UILayoutGuide *margin = self.layoutMarginsGuide;
+    [_leftArticleView.topAnchor constraintEqualToAnchor:margin.topAnchor];
+    
+    [_leftArticleView addConstraint:[NSLayoutConstraint constraintWithItem:_leftArticleView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+    
+    [_leftArticleView addConstraint:[NSLayoutConstraint constraintWithItem:_leftArticleView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1 constant:[CPArticleView leftSpaceOfTitle]]];
+   
+    
     [_leftArticleView.rightAnchor constraintEqualToAnchor:_rightArticleView.leftAnchor constant:-[CPArticleView leftSpaceOfTitle]];
+    
+     [_leftArticleView addConstraint:[NSLayoutConstraint constraintWithItem:_leftArticleView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
+    
     [_leftArticleView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor];
     [_rightArticleView.topAnchor constraintEqualToAnchor:self.topAnchor];
     [_rightArticleView.rightAnchor constraintEqualToAnchor:self.rightAnchor constant:-[CPArticleView leftSpaceOfTitle]];

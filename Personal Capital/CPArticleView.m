@@ -28,6 +28,7 @@
 }
 - (void)setBorderWidth:(CGFloat)borderWidth {
     self.layer.borderWidth = borderWidth;
+    [self setLayoutMargins:UIEdgeInsetsMake(self.borderWidth, self.borderWidth, self.borderWidth, self.borderWidth)];
     [self setNeedsLayout];
 }
 - (CGFloat)borderWidth {
@@ -42,9 +43,12 @@
         _imageView = [[UIImageView alloc] init];
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.numberOfLines = 1;
+        [self addSubview:_imageView];
+        [self addSubview:_titleLabel];
         if (showDetail) {
             _detailLabel = [[UILabel alloc] init];
             _detailLabel.numberOfLines = IDIOM == IPAD ? 3 : 2;
+            [self addSubview:_detailLabel];
             
         }
         [self setContraints];
@@ -58,21 +62,26 @@
 }
 static CGFloat heightForDetailLabelOfOneLine = 25;
 - (void)setContraints {
-    [[_imageView.topAnchor constraintEqualToAnchor:self.topAnchor constant:self.borderWidth] setActive:YES];
-    [[_imageView.leftAnchor constraintEqualToAnchor:self.leftAnchor constant:self.borderWidth] setActive:YES];
-    [[_imageView.rightAnchor constraintEqualToAnchor:self.rightAnchor constant:self.borderWidth] setActive:YES];
+    UILayoutGuide *margin = self.layoutMarginsGuide;
+    [_imageView.topAnchor constraintEqualToAnchor:margin.topAnchor];
+    [_imageView.leftAnchor constraintEqualToAnchor:margin.leftAnchor];
+    [_imageView.rightAnchor constraintEqualToAnchor:margin.rightAnchor];
+
     [[_imageView.bottomAnchor constraintEqualToAnchor:_titleLabel.topAnchor constant:1] setActive:YES];
-    
-    [[_titleLabel.leftAnchor constraintEqualToAnchor:self.leftAnchor constant: [CPArticleView leftSpaceOfTitle]] setActive:YES];
-    [[_titleLabel.rightAnchor constraintEqualToAnchor:self.rightAnchor constant:self.borderWidth] setActive:YES];
+    [_titleLabel.leftAnchor constraintEqualToAnchor:margin.leftAnchor constant:[CPArticleView leftSpaceOfTitle]];
+    [_titleLabel.rightAnchor constraintEqualToAnchor:margin.rightAnchor];
     [[_titleLabel.heightAnchor constraintEqualToConstant:44] setActive:YES];
+    
     if (_detailLabel == nil) {
-        [[_titleLabel.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:self.borderWidth] setActive:YES];
+        [_titleLabel.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor];
     }
     else {
         [[_titleLabel.bottomAnchor constraintEqualToAnchor:_detailLabel.topAnchor constant:1] setActive:YES];
-        [[_detailLabel.leftAnchor constraintEqualToAnchor:self.leftAnchor constant:[CPArticleView leftSpaceOfTitle]] setActive:YES];
-        [[_detailLabel.rightAnchor constraintEqualToAnchor:self.rightAnchor constant:self.borderWidth] setActive:YES];
+        
+        [_detailLabel.leftAnchor constraintEqualToAnchor:margin.leftAnchor constant:[CPArticleView leftSpaceOfTitle]];
+        [_detailLabel.rightAnchor constraintEqualToAnchor:margin.rightAnchor];
+        [_detailLabel.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor];
+     
         [_detailLabel.heightAnchor constraintEqualToConstant: heightForDetailLabelOfOneLine * _detailLabel.numberOfLines];
     }
 }
