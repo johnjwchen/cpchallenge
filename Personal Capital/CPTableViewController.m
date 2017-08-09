@@ -19,6 +19,7 @@
 
 static NSString * const kCPMainArticleTableViewCell = @"CPMainArticleTableViewCell";
 static NSString * const kCPPreviousArticleTableViewCell = @"CPPreviousArticleTableViewCell";
+static NSString * const kCPPreviousArticleHeaderView = @"CPPreviousArticleHeaderView";
 
 static CGFloat ratioOfArticleCellHeightWidth = 0.7;
 
@@ -35,8 +36,12 @@ static CGFloat ratioOfArticleCellHeightWidth = 0.7;
     
     [self.tableView registerClass:[CPMainArticleTableViewCell class] forCellReuseIdentifier:kCPMainArticleTableViewCell];
     [self.tableView registerClass:[CPPreviousArticleTableViewCell class] forCellReuseIdentifier:kCPPreviousArticleTableViewCell];
+    [self.tableView registerClass:[CPPreviousArticleHeaderView class] forHeaderFooterViewReuseIdentifier:kCPPreviousArticleHeaderView];
+    
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 200;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.allowsSelection = NO;
     self.tableView.delegate = nil;
 }
 
@@ -82,7 +87,7 @@ static CGFloat ratioOfArticleCellHeightWidth = 0.7;
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) return nil;
     
-    CPPreviousArticleHeaderView *headerView = [[CPPreviousArticleHeaderView alloc] init];
+    CPPreviousArticleHeaderView *headerView = (CPPreviousArticleHeaderView *)[tableView dequeueReusableHeaderFooterViewWithIdentifier:kCPPreviousArticleHeaderView];
     headerView.label.text = @"Previous Articles";
     return headerView;
 }

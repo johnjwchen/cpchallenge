@@ -17,38 +17,23 @@
 
 @implementation CPPreviousArticleHeaderView
 
-- (instancetype) init {
-    self = [super init];
-    if (self)
-        [self commonInit];
+- (instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier {
+    self = [super initWithReuseIdentifier:reuseIdentifier];
+    if (self) {
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+        _label = [[UILabel alloc] init];
+        _label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+        _label.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.contentView addSubview:_label];
+        UILayoutGuide *margin = self.layoutMarginsGuide;
+        [[_label.topAnchor constraintEqualToAnchor:margin.topAnchor] setActive:YES];
+        [[_label.leftAnchor constraintEqualToAnchor:margin.leftAnchor constant:[CPArticleView leftSpaceOfTitle]] setActive:YES];
+        [[_label.rightAnchor constraintEqualToAnchor:margin.rightAnchor] setActive:YES];
+        [[_label.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor] setActive:YES];
+        [self setNeedsUpdateConstraints];
+    }
     return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self)
-        [self commonInit];
-    return self;
-}
-
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder: aDecoder];
-    if (self)
-        [self commonInit];
-    return self;
-}
-
-- (void)commonInit {
-    self.translatesAutoresizingMaskIntoConstraints = NO;
-    _label = [[UILabel alloc] init];
-    _label.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview:_label];
-    UILayoutGuide *margin = self.layoutMarginsGuide;
-    [_label.topAnchor constraintEqualToAnchor:margin.topAnchor];
-    [_label.leftAnchor constraintEqualToAnchor:margin.leftAnchor constant:[CPArticleView leftSpaceOfTitle]];
-    [_label.rightAnchor constraintEqualToAnchor:margin.rightAnchor];
-    [_label.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor];
-    [self setNeedsUpdateConstraints];
 }
 
 @end

@@ -23,7 +23,7 @@
 		4E8150561F3A3D7F00327F67 /* CPArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150551F3A3D7F00327F67 /* CPArticleView.m */; };
 		4E81505E1F3A8B6A00327F67 /* UIImageView+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81505D1F3A8B6A00327F67 /* UIImageView+Network.m */; };
 		4E8150611F3A939B00327F67 /* CPPreviousArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150601F3A939B00327F67 /* CPPreviousArticleTableViewCell.m */; };
-		4E8150641F3ABB9B00327F67 /* CPPreviousArticleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150631F3ABB9B00327F67 /* CPPreviousArticleHeaderView.m */; };
+		4E8150711F3AE98300327F67 /* CPPreviousArticleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150701F3AE98300327F67 /* CPPreviousArticleHeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,8 +78,8 @@
 		4E81505D1F3A8B6A00327F67 /* UIImageView+Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Network.m"; sourceTree = "<group>"; };
 		4E81505F1F3A939B00327F67 /* CPPreviousArticleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPreviousArticleTableViewCell.h; sourceTree = "<group>"; };
 		4E8150601F3A939B00327F67 /* CPPreviousArticleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPreviousArticleTableViewCell.m; sourceTree = "<group>"; };
-		4E8150621F3ABB9B00327F67 /* CPPreviousArticleHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPreviousArticleHeaderView.h; sourceTree = "<group>"; };
-		4E8150631F3ABB9B00327F67 /* CPPreviousArticleHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPreviousArticleHeaderView.m; sourceTree = "<group>"; };
+		4E81506F1F3AE98300327F67 /* CPPreviousArticleHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPreviousArticleHeaderView.h; sourceTree = "<group>"; };
+		4E8150701F3AE98300327F67 /* CPPreviousArticleHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPreviousArticleHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,8 +205,8 @@
 				4E8150601F3A939B00327F67 /* CPPreviousArticleTableViewCell.m */,
 				4E8150541F3A3D7F00327F67 /* CPArticleView.h */,
 				4E8150551F3A3D7F00327F67 /* CPArticleView.m */,
-				4E8150621F3ABB9B00327F67 /* CPPreviousArticleHeaderView.h */,
-				4E8150631F3ABB9B00327F67 /* CPPreviousArticleHeaderView.m */,
+				4E81506F1F3AE98300327F67 /* CPPreviousArticleHeaderView.h */,
+				4E8150701F3AE98300327F67 /* CPPreviousArticleHeaderView.m */,
 				4E81505C1F3A8B6A00327F67 /* UIImageView+Network.h */,
 				4E81505D1F3A8B6A00327F67 /* UIImageView+Network.m */,
 			);
@@ -359,7 +359,7 @@
 				4E8150061F37EA0A00327F67 /* CPTableViewController.m in Sources */,
 				4E8150611F3A939B00327F67 /* CPPreviousArticleTableViewCell.m in Sources */,
 				4E8150031F37EA0A00327F67 /* AppDelegate.m in Sources */,
-				4E8150641F3ABB9B00327F67 /* CPPreviousArticleHeaderView.m in Sources */,
+				4E8150711F3AE98300327F67 /* CPPreviousArticleHeaderView.m in Sources */,
 				4E8150501F397F2700327F67 /* CPWebViewController.m in Sources */,
 				4E8150491F38E5E500327F67 /* CPArticle.m in Sources */,
 				4E8150461F38E27B00327F67 /* CPParseOperation.m in Sources */,

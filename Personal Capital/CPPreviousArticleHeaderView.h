@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPPreviousArticleHeaderView : UIView
+@interface CPPreviousArticleHeaderView : UITableViewHeaderFooterView
 @property (nonatomic, readonly) UILabel *label;
 @end
