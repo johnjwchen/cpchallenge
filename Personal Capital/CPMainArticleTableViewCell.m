@@ -67,7 +67,8 @@
     
     [_articleView setNeedsDisplay];
     [_articleView setNeedsLayout];
-    [_articleView layoutIfNeeded];
+    [self.contentView setNeedsLayout];
+    [self.contentView layoutIfNeeded];
 }
 
 

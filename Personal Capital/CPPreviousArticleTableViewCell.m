@@ -81,7 +81,8 @@
     [_rightArticleView setNeedsLayout];
     [_rightArticleView layoutIfNeeded];
     [_leftArticleView setNeedsLayout];
-    [_leftArticleView layoutIfNeeded];
+    [self.contentView setNeedsLayout];
+    [self.contentView layoutIfNeeded];
 }
 
 
