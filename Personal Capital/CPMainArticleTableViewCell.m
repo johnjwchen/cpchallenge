@@ -7,7 +7,6 @@
 //
 
 #import "CPMainArticleTableViewCell.h"
-#import "CPArticleView.h"
 #import "UIImageView+Network.h"
 
 @interface CPMainArticleTableViewCell()
@@ -22,6 +21,10 @@
     return [CPArticleView heightFromWidth:[UIScreen mainScreen].bounds.size.width hasDetail:YES];
 }
 
+- (void)clickArticle:(CPArticleView *)articleView {
+    [_viewLinkDelegate viewArticleURL:articleView.urlString];
+}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -31,6 +34,8 @@
         _articleView.backgroundColor = self.backgroundColor;
         _articleView.translatesAutoresizingMaskIntoConstraints = NO;
         [self.contentView addSubview:_articleView];
+        
+        [_articleView addTarget:self action:@selector(clickArticle:) forControlEvents:UIControlEventTouchUpInside];
         
         [self setUpContraints];
     }
@@ -47,6 +52,7 @@
 
 - (void)setArticle:(id<ArticleItem>)article {
     if (article == nil) return;
+    _articleView.urlString = article.link;
     [_articleView.imageView setImageOfURLString:article.imageURL];
     [_articleView.titleLabel setText:article.htmlTitle];
     NSString *detail = [NSString stringWithFormat:@"%@ — %@", [self convertDateString:article.pubDate], article.htmlDescription];

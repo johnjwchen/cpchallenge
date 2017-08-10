@@ -16,13 +16,20 @@
 
 @implementation CPWebViewController
 
+#pragma mark - rotation support
+
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskAll;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.title = @"Loading...";
     _webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     _webView.delegate = self;
     [self.view addSubview:_webView];

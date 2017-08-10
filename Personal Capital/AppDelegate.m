@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "CPTableViewController.h"
 #import "CPWebViewController.h"
+#import "CPNavigationViewController.h"
 
 @interface AppDelegate ()
 
@@ -21,7 +22,7 @@
     // Create window & the root view controller here, since there's no storyboard supported.
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     CPTableViewController *vc = [[CPTableViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    CPNavigationViewController *nav = [[CPNavigationViewController alloc] initWithRootViewController:vc];
     _window.rootViewController = nav;
     [_window makeKeyAndVisible];
     return YES;

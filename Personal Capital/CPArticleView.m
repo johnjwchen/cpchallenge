@@ -90,7 +90,7 @@
     return self;
 }
 
-
+#pragma mark - set constraints
 
 - (void)setContraints {
     UILayoutGuide *margin = self.layoutMarginsGuide;
@@ -113,6 +113,18 @@
         [[_detailLabel.rightAnchor constraintEqualToAnchor:margin.rightAnchor] setActive:YES];
         [[_detailLabel.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor constant:-6] setActive:YES];
     }
+}
+
+#pragma mark - touch events
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    self.backgroundColor = [UIColor lightGrayColor];
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
+    self.backgroundColor = [UIColor whiteColor];
 }
 
 @end

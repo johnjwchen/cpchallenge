@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Protocols.h"
+#import "CPArticleView.h"
 
 @interface CPPreviousArticleTableViewCell : UITableViewCell
 
 - (void)setLeftArticle:(id<ArticleItem>)leftArticle rightArticle:(id<ArticleItem>)rightArticle;
+
+@property (nonatomic, weak) id<CPViewLinkDelegate> viewLinkDelegate;
 
 + (CGFloat)rowHeight;
 @end

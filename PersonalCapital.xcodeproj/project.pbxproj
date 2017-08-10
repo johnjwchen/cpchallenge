@@ -25,6 +25,7 @@
 		4E8150711F3AE98300327F67 /* CPPreviousArticleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150701F3AE98300327F67 /* CPPreviousArticleHeaderView.m */; };
 		4E8150811F3B876800327F67 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E8150801F3B876800327F67 /* Default-568h@2x.png */; };
 		4E8150831F3BB96B00327F67 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E8150821F3BB96B00327F67 /* Storyboard.storyboard */; };
+		4E8150861F3BD1C300327F67 /* CPNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150851F3BD1C300327F67 /* CPNavigationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		4E8150701F3AE98300327F67 /* CPPreviousArticleHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPreviousArticleHeaderView.m; sourceTree = "<group>"; };
 		4E8150801F3B876800327F67 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4E8150821F3BB96B00327F67 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		4E8150841F3BD1C300327F67 /* CPNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNavigationViewController.h; sourceTree = "<group>"; };
+		4E8150851F3BD1C300327F67 /* CPNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNavigationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +183,8 @@
 				4E8150051F37EA0A00327F67 /* CPTableViewController.m */,
 				4E81504E1F397F2700327F67 /* CPWebViewController.h */,
 				4E81504F1F397F2700327F67 /* CPWebViewController.m */,
+				4E8150841F3BD1C300327F67 /* CPNavigationViewController.h */,
+				4E8150851F3BD1C300327F67 /* CPNavigationViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -361,6 +366,7 @@
 			files = (
 				4E81503B1F38DCD400327F67 /* CPChannelSource.m in Sources */,
 				4E8150061F37EA0A00327F67 /* CPTableViewController.m in Sources */,
+				4E8150861F3BD1C300327F67 /* CPNavigationViewController.m in Sources */,
 				4E8150611F3A939B00327F67 /* CPPreviousArticleTableViewCell.m in Sources */,
 				4E8150031F37EA0A00327F67 /* AppDelegate.m in Sources */,
 				4E8150711F3AE98300327F67 /* CPPreviousArticleHeaderView.m in Sources */,

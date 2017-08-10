@@ -7,7 +7,6 @@
 //
 
 #import "CPPreviousArticleTableViewCell.h"
-#import "CPArticleView.h"
 #import "UIImageView+Network.h"
 
 @interface CPPreviousArticleTableViewCell()
@@ -21,6 +20,10 @@
     return [CPArticleView heightFromWidth:[UIScreen mainScreen].bounds.size.width/2 hasDetail:NO];
 }
 
+- (void)clickArticle:(CPArticleView *)articleView {
+    [_viewLinkDelegate viewArticleURL:articleView.urlString];
+}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -31,11 +34,13 @@
         _leftArticleView.backgroundColor = self.backgroundColor;
         _leftArticleView.translatesAutoresizingMaskIntoConstraints = NO;
         [self.contentView addSubview:_leftArticleView];
+        [_leftArticleView addTarget:self action:@selector(clickArticle:) forControlEvents:UIControlEventTouchUpInside];
         
         _rightArticleView = [[CPArticleView alloc] initShowDetail:NO];
         _rightArticleView.backgroundColor = self.backgroundColor;
         _rightArticleView.translatesAutoresizingMaskIntoConstraints = NO;
         [self.contentView addSubview:_rightArticleView];
+        [_rightArticleView addTarget:self action:@selector(clickArticle:) forControlEvents:UIControlEventTouchUpInside];
         
         [self setUpContraints];
     }
@@ -58,14 +63,17 @@
 }
 
 - (void)setLeftArticle:(id<ArticleItem>)leftArticle rightArticle:(id<ArticleItem>)rightArticle {
+    _leftArticleView.urlString = leftArticle.link;
     [_leftArticleView.imageView setImageOfURLString: leftArticle.imageURL];
     [_leftArticleView.titleLabel setText:leftArticle.htmlTitle];
     
     [_rightArticleView setHidden:(rightArticle == nil)];
+    _rightArticleView.urlString = rightArticle.link;
     [_rightArticleView.imageView setImageOfURLString:rightArticle.imageURL];
     [_rightArticleView.titleLabel setText:rightArticle.htmlTitle];
     
     [self setNeedsLayout];
+    [self layoutIfNeeded];
 }
 
 

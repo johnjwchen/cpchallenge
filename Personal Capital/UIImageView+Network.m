@@ -34,7 +34,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakIndicator stopAnimating];
             [weakIndicator removeFromSuperview];
-            [weakSelf setNeedsDisplay];
+            
             weakSelf.image = image;
             [weakSelf setNeedsDisplay];
         });

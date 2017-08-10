@@ -12,8 +12,9 @@
 #import "CPMainArticleTableViewCell.h"
 #import "CPPreviousArticleTableViewCell.h"
 #import "CPPreviousArticleHeaderView.h"
+#import "CPWebViewController.h"
 
-@interface CPTableViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface CPTableViewController ()<UITableViewDelegate, UITableViewDataSource, CPViewLinkDelegate>
 @property (nonatomic, strong) CPChannelSource *source;
 @end
 
@@ -24,6 +25,10 @@ static NSString * const kCPPreviousArticleHeaderView = @"CPPreviousArticleHeader
 //static CGFloat ratioOfArticleCellHeightWidth = 0.7;
 
 @implementation CPTableViewController
+
+- (BOOL)shouldAutorotate {
+    return YES;
+}
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskAll;
@@ -75,11 +80,10 @@ static NSString * const kCPPreviousArticleHeaderView = @"CPPreviousArticleHeader
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-        CPMainArticleTableViewCell *mainArticleCell = (CPMainArticleTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCPMainArticleTableViewCell];
-        [mainArticleCell setArticle:_source.articles.firstObject];
-        [mainArticleCell setNeedsLayout];
-        [mainArticleCell layoutIfNeeded];
-        return mainArticleCell;
+            CPMainArticleTableViewCell *mainArticleCell = (CPMainArticleTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCPMainArticleTableViewCell];
+            [mainArticleCell setArticle:_source.articles.firstObject];
+            [mainArticleCell setViewLinkDelegate:self];
+            return mainArticleCell;
         }
         else {
             CPPreviousArticleHeaderView *headerViewCell = (CPPreviousArticleHeaderView*)[tableView dequeueReusableCellWithIdentifier:kCPPreviousArticleHeaderView];
@@ -92,8 +96,7 @@ static NSString * const kCPPreviousArticleHeaderView = @"CPPreviousArticleHeader
         id<ArticleItem> leftArticle = _source.articles[2*(indexPath.row+1)-1];
         id<ArticleItem> rightArticle = 2*(indexPath.row+1) < _source.articles.count ? _source.articles[2*(indexPath.row+1)] : nil;
         [previewArticleCell setLeftArticle:leftArticle rightArticle:rightArticle];
-        [previewArticleCell.contentView setNeedsLayout];
-        [previewArticleCell.contentView layoutIfNeeded];
+        [previewArticleCell setViewLinkDelegate:self];
         return previewArticleCell;
     }
 }
@@ -107,7 +110,14 @@ static NSString * const kCPPreviousArticleHeaderView = @"CPPreviousArticleHeader
     }
 }
 
-#pragma mark - Tableview Delegate
+#pragma mark - CPViewLinkDelegate
+
+- (void)viewArticleURL:(NSString *)articleURLString {
+    NSString *urlString = [NSString stringWithFormat:@"%@?displayMobileNavigation=0", articleURLString];
+    CPWebViewController *webVC = [[CPWebViewController alloc] init];
+    webVC.urlString = urlString;
+    [self.navigationController pushViewController:webVC animated:YES];
+}
 
 
 #pragma mark - Datasoure change
