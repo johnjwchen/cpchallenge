@@ -16,6 +16,7 @@
 
 @interface CPTableViewController ()<UITableViewDelegate, UITableViewDataSource, CPViewLinkDelegate>
 @property (nonatomic, strong) CPChannelSource *source;
+@property (nonatomic, strong) UIActivityIndicatorView *loadingIndicator;
 @end
 
 static NSString * const kCPMainArticleTableViewCell = @"CPMainArticleTableViewCell";
@@ -49,9 +50,15 @@ static NSString * const kCPPreviousArticleHeaderTableViewCell = @"CPPreviousArti
     self.tableView.delegate = nil;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadSource)];
+    
+    _loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    _loadingIndicator.center = self.tableView.center;
+     [self.view addSubview:_loadingIndicator];
+    _loadingIndicator.hidesWhenStopped = YES;
 }
 - (void)reloadSource {
     [_source load];
+    [_loadingIndicator startAnimating];
     [self.tableView reloadData];
 }
 
@@ -127,6 +134,7 @@ static NSString * const kCPPreviousArticleHeaderTableViewCell = @"CPPreviousArti
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:kArticles]) {
         // reload table
+        [_loadingIndicator stopAnimating];
         [self.tableView reloadData];
     }
     else if ([keyPath isEqualToString:kError] && _source.error != nil) {
