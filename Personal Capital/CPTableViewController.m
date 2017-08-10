@@ -11,7 +11,7 @@
 #import "CPChannelSource.h"
 #import "CPMainArticleTableViewCell.h"
 #import "CPPreviousArticleTableViewCell.h"
-#import "CPPreviousArticleHeaderView.h"
+#import "CPPreviousArticleHeaderTableViewCell.h"
 #import "CPWebViewController.h"
 
 @interface CPTableViewController ()<UITableViewDelegate, UITableViewDataSource, CPViewLinkDelegate>
@@ -20,7 +20,7 @@
 
 static NSString * const kCPMainArticleTableViewCell = @"CPMainArticleTableViewCell";
 static NSString * const kCPPreviousArticleTableViewCell = @"CPPreviousArticleTableViewCell";
-static NSString * const kCPPreviousArticleHeaderView = @"CPPreviousArticleHeaderView";
+static NSString * const kCPPreviousArticleHeaderTableViewCell = @"CPPreviousArticleHeaderTableViewCell";
 
 //static CGFloat ratioOfArticleCellHeightWidth = 0.7;
 
@@ -42,7 +42,7 @@ static NSString * const kCPPreviousArticleHeaderView = @"CPPreviousArticleHeader
     
     [self.tableView registerClass:[CPMainArticleTableViewCell class] forCellReuseIdentifier:kCPMainArticleTableViewCell];
     [self.tableView registerClass:[CPPreviousArticleTableViewCell class] forCellReuseIdentifier:kCPPreviousArticleTableViewCell];
-    [self.tableView registerClass:[CPPreviousArticleHeaderView class] forCellReuseIdentifier:kCPPreviousArticleHeaderView];
+    [self.tableView registerClass:[CPPreviousArticleHeaderTableViewCell class] forCellReuseIdentifier:kCPPreviousArticleHeaderTableViewCell];
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 100;
@@ -83,10 +83,12 @@ static NSString * const kCPPreviousArticleHeaderView = @"CPPreviousArticleHeader
             CPMainArticleTableViewCell *mainArticleCell = (CPMainArticleTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCPMainArticleTableViewCell];
             [mainArticleCell setArticle:_source.articles.firstObject];
             [mainArticleCell setViewLinkDelegate:self];
+            [mainArticleCell setNeedsLayout];
+            
             return mainArticleCell;
         }
         else {
-            CPPreviousArticleHeaderView *headerViewCell = (CPPreviousArticleHeaderView*)[tableView dequeueReusableCellWithIdentifier:kCPPreviousArticleHeaderView];
+            CPPreviousArticleHeaderTableViewCell *headerViewCell = (CPPreviousArticleHeaderTableViewCell*)[tableView dequeueReusableCellWithIdentifier:kCPPreviousArticleHeaderTableViewCell];
             headerViewCell.label.text = @"Previous Articles";
             return headerViewCell;
         }
@@ -97,6 +99,7 @@ static NSString * const kCPPreviousArticleHeaderView = @"CPPreviousArticleHeader
         id<ArticleItem> rightArticle = 2*(indexPath.row+1) < _source.articles.count ? _source.articles[2*(indexPath.row+1)] : nil;
         [previewArticleCell setLeftArticle:leftArticle rightArticle:rightArticle];
         [previewArticleCell setViewLinkDelegate:self];
+        [previewArticleCell setNeedsLayout];
         return previewArticleCell;
     }
 }
@@ -114,6 +117,7 @@ static NSString * const kCPPreviousArticleHeaderView = @"CPPreviousArticleHeader
 
 - (void)viewArticleURL:(NSString *)articleURLString {
     NSString *urlString = [NSString stringWithFormat:@"%@?displayMobileNavigation=0", articleURLString];
+    NSLog(@"link: %@", urlString);
     CPWebViewController *webVC = [[CPWebViewController alloc] init];
     webVC.urlString = urlString;
     [self.navigationController pushViewController:webVC animated:YES];

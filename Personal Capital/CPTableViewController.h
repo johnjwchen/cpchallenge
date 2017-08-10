@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+/*:
+ * A Table View controller that display articles from RSS feed
+*/
 @interface CPTableViewController : UITableViewController
-
 
 @end
 

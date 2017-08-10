@@ -6,16 +6,16 @@
 //
 //
 
-#import "CPPreviousArticleHeaderView.h"
+#import "CPPreviousArticleHeaderTableViewCell.h"
 #import "CPArticleView.h"
 
-@interface CPPreviousArticleHeaderView()
+@interface CPPreviousArticleHeaderTableViewCell()
 
 @property (nonatomic, readwrite, strong) UILabel *label;
 
 @end
 
-@implementation CPPreviousArticleHeaderView
+@implementation CPPreviousArticleHeaderTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

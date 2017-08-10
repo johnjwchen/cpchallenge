@@ -15,6 +15,9 @@
 
 @end
 
+/*:
+ * The view represents the retangle area of article with image, title and (or) detail
+*/
 @interface CPArticleView : UIControl
 @property (nonatomic, readwrite) CGColorRef borderColor;
 @property (nonatomic, readwrite) CGFloat borderWidth;

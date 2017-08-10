@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+/*:
+ * protocol that will be used by the corresonding view to show article content
+*/
 @protocol ArticleItem <NSObject>
 
 @property (readonly, copy) NSString *htmlTitle;

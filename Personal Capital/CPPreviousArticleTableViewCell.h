@@ -10,6 +10,9 @@
 #import "Protocols.h"
 #import "CPArticleView.h"
 
+/*:
+ * the previous article row that has two article views
+*/
 @interface CPPreviousArticleTableViewCell : UITableViewCell
 
 - (void)setLeftArticle:(id<ArticleItem>)leftArticle rightArticle:(id<ArticleItem>)rightArticle;

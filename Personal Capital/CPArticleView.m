@@ -17,6 +17,7 @@
 
 @implementation CPArticleView
 
+// calculate row height
 + (CGFloat)heightFromWidth:(CGFloat)width hasDetail:(BOOL)hasDetail {
     if (hasDetail)
         return width * 30/78 + ([self isPad] ? 100 : 88);
@@ -113,6 +114,7 @@
         [[_detailLabel.rightAnchor constraintEqualToAnchor:margin.rightAnchor] setActive:YES];
         [[_detailLabel.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor constant:-6] setActive:YES];
     }
+    [self setNeedsUpdateConstraints];
 }
 
 #pragma mark - touch events

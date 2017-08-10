@@ -22,9 +22,8 @@
 		4E8150561F3A3D7F00327F67 /* CPArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150551F3A3D7F00327F67 /* CPArticleView.m */; };
 		4E81505E1F3A8B6A00327F67 /* UIImageView+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81505D1F3A8B6A00327F67 /* UIImageView+Network.m */; };
 		4E8150611F3A939B00327F67 /* CPPreviousArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150601F3A939B00327F67 /* CPPreviousArticleTableViewCell.m */; };
-		4E8150711F3AE98300327F67 /* CPPreviousArticleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150701F3AE98300327F67 /* CPPreviousArticleHeaderView.m */; };
+		4E8150711F3AE98300327F67 /* CPPreviousArticleHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150701F3AE98300327F67 /* CPPreviousArticleHeaderTableViewCell.m */; };
 		4E8150811F3B876800327F67 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E8150801F3B876800327F67 /* Default-568h@2x.png */; };
-		4E8150831F3BB96B00327F67 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E8150821F3BB96B00327F67 /* Storyboard.storyboard */; };
 		4E8150861F3BD1C300327F67 /* CPNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8150851F3BD1C300327F67 /* CPNavigationViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -79,10 +78,9 @@
 		4E81505D1F3A8B6A00327F67 /* UIImageView+Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Network.m"; sourceTree = "<group>"; };
 		4E81505F1F3A939B00327F67 /* CPPreviousArticleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPreviousArticleTableViewCell.h; sourceTree = "<group>"; };
 		4E8150601F3A939B00327F67 /* CPPreviousArticleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPreviousArticleTableViewCell.m; sourceTree = "<group>"; };
-		4E81506F1F3AE98300327F67 /* CPPreviousArticleHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPreviousArticleHeaderView.h; sourceTree = "<group>"; };
-		4E8150701F3AE98300327F67 /* CPPreviousArticleHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPreviousArticleHeaderView.m; sourceTree = "<group>"; };
+		4E81506F1F3AE98300327F67 /* CPPreviousArticleHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPreviousArticleHeaderTableViewCell.h; sourceTree = "<group>"; };
+		4E8150701F3AE98300327F67 /* CPPreviousArticleHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPreviousArticleHeaderTableViewCell.m; sourceTree = "<group>"; };
 		4E8150801F3B876800327F67 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		4E8150821F3BB96B00327F67 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		4E8150841F3BD1C300327F67 /* CPNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNavigationViewController.h; sourceTree = "<group>"; };
 		4E8150851F3BD1C300327F67 /* CPNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNavigationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -212,9 +210,8 @@
 				4E8150601F3A939B00327F67 /* CPPreviousArticleTableViewCell.m */,
 				4E8150541F3A3D7F00327F67 /* CPArticleView.h */,
 				4E8150551F3A3D7F00327F67 /* CPArticleView.m */,
-				4E8150821F3BB96B00327F67 /* Storyboard.storyboard */,
-				4E81506F1F3AE98300327F67 /* CPPreviousArticleHeaderView.h */,
-				4E8150701F3AE98300327F67 /* CPPreviousArticleHeaderView.m */,
+				4E81506F1F3AE98300327F67 /* CPPreviousArticleHeaderTableViewCell.h */,
+				4E8150701F3AE98300327F67 /* CPPreviousArticleHeaderTableViewCell.m */,
 				4E81505C1F3A8B6A00327F67 /* UIImageView+Network.h */,
 				4E81505D1F3A8B6A00327F67 /* UIImageView+Network.m */,
 			);
@@ -339,7 +336,6 @@
 			files = (
 				4E81500B1F37EA0A00327F67 /* Assets.xcassets in Resources */,
 				4E8150811F3B876800327F67 /* Default-568h@2x.png in Resources */,
-				4E8150831F3BB96B00327F67 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,7 +365,7 @@
 				4E8150861F3BD1C300327F67 /* CPNavigationViewController.m in Sources */,
 				4E8150611F3A939B00327F67 /* CPPreviousArticleTableViewCell.m in Sources */,
 				4E8150031F37EA0A00327F67 /* AppDelegate.m in Sources */,
-				4E8150711F3AE98300327F67 /* CPPreviousArticleHeaderView.m in Sources */,
+				4E8150711F3AE98300327F67 /* CPPreviousArticleHeaderTableViewCell.m in Sources */,
 				4E8150501F397F2700327F67 /* CPWebViewController.m in Sources */,
 				4E8150491F38E5E500327F67 /* CPArticle.m in Sources */,
 				4E8150461F38E27B00327F67 /* CPParseOperation.m in Sources */,

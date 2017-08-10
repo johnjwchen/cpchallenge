@@ -17,7 +17,8 @@
 @implementation CPPreviousArticleTableViewCell
 
 + (CGFloat)rowHeight {
-    return [CPArticleView heightFromWidth:[UIScreen mainScreen].bounds.size.width/2 hasDetail:NO];
+    CGFloat ratio = UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) || [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone ? 1 : 0.7;
+    return ratio * [CPArticleView heightFromWidth:[UIScreen mainScreen].bounds.size.width/2 hasDetail:NO];
 }
 
 - (void)clickArticle:(CPArticleView *)articleView {
@@ -50,18 +51,23 @@
 
 - (void)setUpContraints {
     UILayoutGuide *margin = self.contentView.layoutMarginsGuide;
+    
     [[_leftArticleView.topAnchor constraintEqualToAnchor:margin.topAnchor] setActive:YES];
     [[_leftArticleView.leftAnchor constraintEqualToAnchor:margin.leftAnchor constant:[CPArticleView leftSpaceOfTitle]] setActive:YES];
     [[_leftArticleView.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor] setActive:YES];
     
     [[_leftArticleView.rightAnchor constraintEqualToAnchor:_rightArticleView.leftAnchor constant:-[CPArticleView leftSpaceOfTitle]] setActive:YES];
+    
     [[_leftArticleView.widthAnchor constraintEqualToAnchor:_rightArticleView.widthAnchor] setActive:YES];
     
     [[_rightArticleView.topAnchor constraintEqualToAnchor:margin.topAnchor] setActive:YES];
     [[_rightArticleView.rightAnchor constraintEqualToAnchor:margin.rightAnchor constant:-[CPArticleView leftSpaceOfTitle]] setActive:YES];
     [[_rightArticleView.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor] setActive:YES];
+    
+    [self.contentView setNeedsUpdateConstraints];
 }
 
+// set aritcle content: image, title 
 - (void)setLeftArticle:(id<ArticleItem>)leftArticle rightArticle:(id<ArticleItem>)rightArticle {
     _leftArticleView.urlString = leftArticle.link;
     [_leftArticleView.imageView setImageOfURLString: leftArticle.imageURL];

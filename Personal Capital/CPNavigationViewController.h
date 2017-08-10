@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/*:
+ * a NavigationViewController that supports all orientations
+*/
 @interface CPNavigationViewController : UINavigationController
 
 @end

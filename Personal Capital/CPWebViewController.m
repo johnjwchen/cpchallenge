@@ -16,7 +16,7 @@
 
 @implementation CPWebViewController
 
-#pragma mark - rotation support
+#pragma mark - orientation support
 
 - (BOOL)shouldAutorotate {
     return YES;

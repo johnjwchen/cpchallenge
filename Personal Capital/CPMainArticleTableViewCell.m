@@ -18,7 +18,8 @@
 @implementation CPMainArticleTableViewCell
 
 + (CGFloat)rowHeight {
-    return [CPArticleView heightFromWidth:[UIScreen mainScreen].bounds.size.width hasDetail:YES];
+    CGFloat ratio = UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) || [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone ? 1 : 0.7;
+    return ratio * [CPArticleView heightFromWidth:[UIScreen mainScreen].bounds.size.width hasDetail:YES];
 }
 
 - (void)clickArticle:(CPArticleView *)articleView {
@@ -48,8 +49,10 @@
     [[_articleView.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor] setActive:YES];
     [[_articleView.leftAnchor constraintEqualToAnchor:margin.leftAnchor] setActive:YES];
     [[_articleView.rightAnchor constraintEqualToAnchor:margin.rightAnchor] setActive:YES];
+    [self.contentView setNeedsUpdateConstraints];
 }
 
+// set article content: image, title and detail
 - (void)setArticle:(id<ArticleItem>)article {
     if (article == nil) return;
     _articleView.urlString = article.link;

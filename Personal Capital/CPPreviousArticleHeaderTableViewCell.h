@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPPreviousArticleHeaderView : UITableViewCell
+/*:
+ * the cell displaying 'previous articles'
+*/
+@interface CPPreviousArticleHeaderTableViewCell : UITableViewCell
 @property (nonatomic, readonly) UILabel *label;
 @end

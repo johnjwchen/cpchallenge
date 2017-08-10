@@ -12,6 +12,9 @@
 
 @implementation UIImageView (Network)
 
+/*:
+ * Asynchronously download the image data while display a indicator on the image view
+*/
 - (void)setImageOfURLString:(NSString *)URLString {
     NSURL *url = [NSURL URLWithString:URLString];
     if (url == nil) {
@@ -28,9 +31,10 @@
     [indicatorView startAnimating];
     
     __weak UIActivityIndicatorView *weakIndicator = indicatorView;
-    
+    // download the image data
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         UIImage *image = [UIImage imageWithData:data];
+        // back to main thread
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakIndicator stopAnimating];
             [weakIndicator removeFromSuperview];

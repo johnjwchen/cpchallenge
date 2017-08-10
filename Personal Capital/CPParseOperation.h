@@ -8,12 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+/*:
+ * for notifing delegate it has new aritcles or an error occurs.
+*/
 @protocol CPParseOperationDelegate <NSObject>
 @required
 - (void)addArticles:(NSArray *)articles;
 - (void)parseError:(NSError *)error;
 @end
 
+/*:
+ * Operation to parse a RSS feed xml
+ * set the parseData as the content
+*/
 @interface CPParseOperation : NSOperation
 
 @property (nonatomic, copy, readonly) NSData *parseData;

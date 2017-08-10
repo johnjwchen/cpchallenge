@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "Protocols.h"
 
+/*:
+ * a object that holds the contents of an article
+*/
 @interface CPArticle : NSObject <ArticleItem>
 
 @property (nonatomic, readwrite, copy) NSString *htmlTitle;

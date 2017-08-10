@@ -10,9 +10,12 @@
 #import "Protocols.h"
 #import "CPArticleView.h"
 
+/*:
+ * tableview cell of the main article 
+*/
 @interface CPMainArticleTableViewCell : UITableViewCell
 
-@property (nonatomic, weak) id<CPViewLinkDelegate> viewLinkDelegate;
+@property (nonatomic, weak) id<CPViewLinkDelegate> viewLinkDelegate; // deleagte to handle article click
 
 - (void)setArticle:(id<ArticleItem>)article;
 
