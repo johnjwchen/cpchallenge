@@ -78,8 +78,10 @@
     [_rightArticleView.imageView setImageOfURLString:rightArticle.imageURL];
     [_rightArticleView.titleLabel setText:rightArticle.htmlTitle];
     
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
+    [_rightArticleView setNeedsLayout];
+    [_rightArticleView layoutIfNeeded];
+    [_leftArticleView setNeedsLayout];
+    [_leftArticleView layoutIfNeeded];
 }
 
 

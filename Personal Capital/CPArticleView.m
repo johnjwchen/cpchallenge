@@ -124,6 +124,11 @@
     self.backgroundColor = [UIColor lightGrayColor];
 }
 
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesCancelled:touches withEvent:event];
+    self.backgroundColor = [UIColor whiteColor];
+}
+
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [super touchesEnded:touches withEvent:event];
     self.backgroundColor = [UIColor whiteColor];

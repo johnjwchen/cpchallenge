@@ -67,6 +67,7 @@
     
     [_articleView setNeedsDisplay];
     [_articleView setNeedsLayout];
+    [_articleView layoutIfNeeded];
 }
 
 
