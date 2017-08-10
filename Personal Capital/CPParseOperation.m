@@ -9,6 +9,16 @@
 #import "CPParseOperation.h"
 #import "CPArticle.h"
 
+#pragma mark - Parser constants
+
+static NSUInteger const kSizeOfArticleBatch = 10;
+static NSString * const kArticleName = @"item";
+static NSString * const kTitleName = @"title";
+static NSString * const kImageName = @"media:content";
+static NSString * const kDescriptionName = @"description";
+static NSString * const kPubDateName = @"pubDate";
+static NSString * const kLinkName = @"link";
+
 @interface CPParseOperation() <NSXMLParserDelegate>
 
 @property (nonatomic) CPArticle *currentArticle;
@@ -83,16 +93,6 @@
         [_delegate parseError:parseError];
     }
 }
-
-#pragma mark - Parser constants
-
-static NSUInteger const kSizeOfArticleBatch = 10;
-static NSString * const kArticleName = @"item";
-static NSString * const kTitleName = @"title";
-static NSString * const kImageName = @"media:content";
-static NSString * const kDescriptionName = @"description";
-static NSString * const kPubDateName = @"pubDate";
-static NSString * const kLinkName = @"link";
 
 
 #pragma mark - NSXMLParserDelegate
