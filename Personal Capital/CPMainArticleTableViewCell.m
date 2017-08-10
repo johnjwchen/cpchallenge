@@ -64,11 +64,6 @@
     paragraphStyle.lineSpacing = 6;
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, detail.length)];
     _articleView.detailLabel.attributedText = attributedString;
-    
-    [_articleView setNeedsDisplay];
-    [_articleView setNeedsLayout];
-    [self.contentView setNeedsLayout];
-    [self.contentView layoutIfNeeded];
 }
 
 

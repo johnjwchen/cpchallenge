@@ -13,6 +13,8 @@
 @property (nonatomic, readwrite, strong) UIImageView *imageView;
 @property (nonatomic, readwrite, strong) UILabel *titleLabel;
 @property (nonatomic, readwrite, strong)  UILabel *detailLabel;
+
+@property (nonatomic, strong)NSLayoutConstraint *titleHeightConstraint;
 @end
 
 @implementation CPArticleView
@@ -102,21 +104,17 @@
         _detailLabel.font = [self detailFont];
         
         [self setContraints];
-        
-          [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
     }
     return self;
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)orientationChanged:(NSNotification *)notification{
-    [self setNeedsUpdateConstraints];
-}
 
 #pragma mark - set constraints
+
+- (void)updateConstraints {
+    _titleHeightConstraint.constant = [self titleLabelHeigh];
+    [super updateConstraints];
+}
 
 - (void)setContraints {
     UILayoutGuide *margin = self.layoutMarginsGuide;
@@ -127,7 +125,8 @@
     [[_imageView.bottomAnchor constraintEqualToAnchor:_titleLabel.topAnchor constant:0] setActive:YES];
     [[_titleLabel.leftAnchor constraintEqualToAnchor:margin.leftAnchor constant:[CPArticleView leftSpaceOfTitle]] setActive:YES];
     [[_titleLabel.rightAnchor constraintEqualToAnchor:margin.rightAnchor] setActive:YES];
-    [[_titleLabel.heightAnchor constraintEqualToConstant:[self titleLabelHeigh]] setActive:YES];
+    _titleHeightConstraint = [_titleLabel.heightAnchor constraintEqualToConstant:[self titleLabelHeigh]];
+    [_titleHeightConstraint setActive:YES];
     
     if (_detailLabel == nil) {
         [[_titleLabel.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor constant:-6] setActive:YES];
@@ -139,7 +138,6 @@
         [[_detailLabel.rightAnchor constraintEqualToAnchor:margin.rightAnchor] setActive:YES];
         [[_detailLabel.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor constant:-6] setActive:YES];
     }
-    [self setNeedsUpdateConstraints];
 }
 
 #pragma mark - touch events

@@ -19,11 +19,8 @@ static char kIndicator;
  * Asynchronously download the image data while display a indicator on the image view
 */
 - (void)setImageOfURLString:(NSString *)URLString {
-    NSURL *url = [NSURL URLWithString:URLString];
-    if (url == nil) {
-        self.image = nil;
-        return;
-    }
+    self.image = nil;
+    
     // cancel previous download task
     NSURLSessionDataTask *oldTask = objc_getAssociatedObject(self, &kDownloadTask);
     UIActivityIndicatorView *oldIndicator = objc_getAssociatedObject(self, &kIndicator);
@@ -34,6 +31,10 @@ static char kIndicator;
     // remove them
     objc_setAssociatedObject(self, &kIndicator, nil, OBJC_ASSOCIATION_RETAIN);
     objc_setAssociatedObject(self, &kDownloadTask, nil, OBJC_ASSOCIATION_RETAIN);
+    
+    NSURL *url = [NSURL URLWithString:URLString];
+    if (url == nil)
+        return;
     
     __weak UIImageView *weakSelf = self;
     UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];

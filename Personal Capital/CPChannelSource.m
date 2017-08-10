@@ -21,6 +21,7 @@ NSString * const kError = @"error";
 @property (nonatomic, strong) NSURLSessionDataTask *sessionTask;
 // queue that manages a NSOperation for parsing the RSS data
 @property (nonatomic, strong) NSOperationQueue *parseQueue;
+@property (nonatomic, strong) CPParseOperation *parseOperation;
 @end
 
 @implementation CPChannelSource
@@ -60,9 +61,10 @@ NSString * const kError = @"error";
             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
             if (((httpResponse.statusCode/100) == 2) && [response.MIMEType isEqual:@"application/rss+xml"]) {
                 // parse the xml data
-                CPParseOperation *parseOperation = [[CPParseOperation alloc] initWithData:data];
-                parseOperation.delegate = self;
-                [_parseQueue addOperation:parseOperation];
+                [_parseOperation cancel];
+                _parseOperation = [[CPParseOperation alloc] initWithData:data];
+                _parseOperation.delegate = self;
+                [_parseQueue addOperation:_parseOperation];
             }
             else {
                 NSString *errorString =

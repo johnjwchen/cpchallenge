@@ -63,8 +63,6 @@
     [[_rightArticleView.topAnchor constraintEqualToAnchor:margin.topAnchor] setActive:YES];
     [[_rightArticleView.rightAnchor constraintEqualToAnchor:margin.rightAnchor constant:-[CPArticleView leftSpaceOfTitle]] setActive:YES];
     [[_rightArticleView.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor] setActive:YES];
-    
-    [self.contentView setNeedsUpdateConstraints];
 }
 
 // set aritcle content: image, title 
@@ -81,6 +79,7 @@
     [_rightArticleView setNeedsLayout];
     [_rightArticleView layoutIfNeeded];
     [_leftArticleView setNeedsLayout];
+    [_leftArticleView layoutIfNeeded];
     [self.contentView setNeedsLayout];
     [self.contentView layoutIfNeeded];
 }
