@@ -25,7 +25,6 @@
         return width * 30/78 + 44;
 }
 
-
 + (CGFloat)leftSpaceOfTitle {
     return [UIScreen mainScreen].bounds.size.width * 20/667;
 }
@@ -50,6 +49,27 @@
     return self.layer.borderWidth;
 }
 
+- (UIFont *)titleFont {
+    if ([CPArticleView isPad]) {
+        return _detailLabel != nil ? [UIFont preferredFontForTextStyle:UIFontTextStyleTitle3] :
+        [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    }
+    else {
+        return _detailLabel != nil ? [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline] :
+        (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) ? [UIFont systemFontOfSize:11] :
+         [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote]);
+    }
+}
+
+- (UIFont *)detailFont {
+    return [CPArticleView isPad] ? [UIFont preferredFontForTextStyle:UIFontTextStyleBody] :
+    [UIFont systemFontOfSize:11];
+}
+
+- (CGFloat)titleLabelHeigh {
+    return _detailLabel == nil ? 44 : 33;
+}
+
 - (instancetype)initShowDetail:(BOOL)showDetail {
     self = [self init];
     if (self) {
@@ -65,14 +85,8 @@
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.numberOfLines = showDetail? 0 : 2;
         _titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-        if ([CPArticleView isPad]) {
-            _titleLabel.font = showDetail ? [UIFont preferredFontForTextStyle:UIFontTextStyleTitle3] :
-            [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
-        }
-        else {
-            _titleLabel.font = showDetail ? [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline] :
-            [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-        }
+        _titleLabel.adjustsFontSizeToFitWidth = NO;
+        
         [self addSubview:_imageView];
         [self addSubview:_titleLabel];
         if (showDetail) {
@@ -80,15 +94,26 @@
             _detailLabel.translatesAutoresizingMaskIntoConstraints = NO;
             _detailLabel.numberOfLines = [CPArticleView isPad]  ? 3 : 2;
             _detailLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-            _detailLabel.font = [CPArticleView isPad] ? [UIFont preferredFontForTextStyle:UIFontTextStyleBody] :
-            [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-            
+            _detailLabel.adjustsFontSizeToFitWidth = NO;
             [self addSubview:_detailLabel];
-            
         }
+        
+        _titleLabel.font = [self titleFont];
+        _detailLabel.font = [self detailFont];
+        
         [self setContraints];
+        
+          [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
     }
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)orientationChanged:(NSNotification *)notification{
+    [self setNeedsUpdateConstraints];
 }
 
 #pragma mark - set constraints
@@ -102,7 +127,7 @@
     [[_imageView.bottomAnchor constraintEqualToAnchor:_titleLabel.topAnchor constant:0] setActive:YES];
     [[_titleLabel.leftAnchor constraintEqualToAnchor:margin.leftAnchor constant:[CPArticleView leftSpaceOfTitle]] setActive:YES];
     [[_titleLabel.rightAnchor constraintEqualToAnchor:margin.rightAnchor] setActive:YES];
-    [[_titleLabel.heightAnchor constraintEqualToConstant:44] setActive:YES];
+    [[_titleLabel.heightAnchor constraintEqualToConstant:[self titleLabelHeigh]] setActive:YES];
     
     if (_detailLabel == nil) {
         [[_titleLabel.bottomAnchor constraintEqualToAnchor:margin.bottomAnchor constant:-6] setActive:YES];

@@ -44,8 +44,6 @@ static NSString * const kCPPreviousArticleHeaderTableViewCell = @"CPPreviousArti
     [self.tableView registerClass:[CPPreviousArticleTableViewCell class] forCellReuseIdentifier:kCPPreviousArticleTableViewCell];
     [self.tableView registerClass:[CPPreviousArticleHeaderTableViewCell class] forCellReuseIdentifier:kCPPreviousArticleHeaderTableViewCell];
     
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 100;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection = NO;
     self.tableView.delegate = nil;
